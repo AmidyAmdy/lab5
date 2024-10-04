@@ -85,15 +85,15 @@ int main()
             break;
 
         case '4':
-
+            keeper.remove("Furniture");
             break;
 
         case '5':
-
+            keeper.remove("Worker");
             break;
 
         case '6':
-
+            keeper.remove("Car");
             break;
 
         case '7':

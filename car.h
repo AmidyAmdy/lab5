@@ -18,28 +18,17 @@ public:
     explicit Car() : mark("Unknown"), model("Unknown"), num("Unknown") {}
     ~Car() {}
 
+    string getMark() const { return mark; }
+    void setMark(string newMark) { mark = newMark; }
+    string getModel() const { return model; }
+    void setModel(string newModel) { model = newModel; }
+    string getNum() const { return num; }
+    void setNum(string newNum) { num = newNum; }
+
     virtual void save() const = 0;
     virtual void load() = 0;
 
-    void print() const
-    {
-        cout << "CAR" << endl;
-
-        if (mark == "Unknown")
-            cout << "Warning: Mark is not set." << endl;
-        else
-            cout << "Mark: " << mark << endl;
-
-        if (model == "Unknown")
-            cout << "Warning: Model is not set." << endl;
-        else
-            cout << "Model: " << model << endl;
-
-        if (num == "Unknown")
-            cout << "Warning: Number is not set." << endl;
-        else
-            cout << "Num: " << num << endl;
-    }
+    void print(Car &car) const;
 };
 
 #endif

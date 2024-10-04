@@ -26,12 +26,21 @@ public:
         items.push_back(item);
     }
 
-    void remove(int index)
+    void remove(string &type)
     {
-        if (index >= 0 && index < items.size())
+        for (auto it = items.begin(); it != items.end();)
         {
-            delete items[index];
-            items.erase(items.begin() + index);
+            if ((type == "Worker" && dynamic_cast<Worker *>(*it)) ||
+                (type == "Car" && dynamic_cast<Car *>(*it)) ||
+                (type == "Furniture" && dynamic_cast<Furniture *>(*it)))
+            {
+                delete *it;
+                it = items.erase(it);
+            }
+            else
+            {
+                ++it;
+            }
         }
     }
 

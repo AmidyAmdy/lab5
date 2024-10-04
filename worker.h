@@ -22,38 +22,21 @@ public:
     explicit Worker() : name("Unknown"), position("Unknown"), salary(0), address("Unknown"), phone_number("Unknown") {}
     ~Worker() {}
 
+    string getName() const { return name; }
+    void setName(string newName) { name = newName; }
+    string getPosition() const { return position; }
+    void setPosition(string newPosition) { position = newPosition; }
+    int getSalary() const { return salary; }
+    void setSalary(string newSalary) { salary = newSalary; }
+    string getAddress() const { return address; }
+    void setAddress(string newAddress) { address = newAddress; }
+    string getPhonenumber() const { return phone_number; }
+    void setPhonenumber(string newPhonenumber) { phone_number = newPhonenumber; }
+
     virtual void save() const = 0;
     virtual void load() = 0;
 
-    void print() const override
-    {
-        cout << "WORKER" << endl;
-
-        if (name == "Unknown")
-            cout << "Warning: Name is not set." << endl;
-        else
-            cout << "Name: " << name << endl;
-
-        if (position == "Unknown")
-            cout << "Warning: Position is not set." << endl;
-        else
-            cout << "Position: " << position << endl;
-
-        if (salary <= 0)
-            cout << "Warning: Salary is not set or invalid." << endl;
-        else
-            cout << "Salary: " << salary << endl;
-
-        if (address == "Unknown")
-            cout << "Warning: Address is not set." << endl;
-        else
-            cout << "Address: " << address << endl;
-
-        if (phone_number == "Unknown")
-            cout << "Warning: Phone number is not set." << endl;
-        else
-            cout << "Phone number: " << phone_number << endl;
-    }
+    void print(Worker &worker) const;
 };
 
 #endif

@@ -27,48 +27,25 @@ public:
                            depth(0.0), color("Unknown"), material("Unknown"), price(0) {}
     ~Furniture() {}
 
+    string getType() const { return type; }
+    void setType(string newType) { type = newType; }
+    double getHeight() const { return height; }
+    void setHeight(string newHeight) { height = newHeight; }
+    double getWidth() const { return width; }
+    void setWidth(string newWidth) { width = newWidth; }
+    double getDepth() const { return depth; }
+    void setDepth(string newDepth) { depth = newDepth; }
+    string getColor() const { return color; }
+    void setColor(string newColor) { color = newColor; }
+    string getMaterial() const { return material; }
+    void setMaterial(string newMaterial) { material = newMaterial; }
+    int getPrice() const { return price; }
+    void setPrice(string newPrice) { price = newPrice; }
+
     virtual void save() const = 0;
     virtual void load() = 0;
 
-    void print() const
-    {
-        cout << "FURNITURE" << endl;
-
-        if (type == "Unknown")
-            cout << "Warning: Type is not set." << endl;
-        else
-            cout << "Type: " << type << endl;
-
-        if (height <= 0.0)
-            cout << "Warning: Height is not set or invalid." << endl;
-        else
-            cout << "Height: " << height << endl;
-
-        if (width <= 0.0)
-            cout << "Warning: Width is not set or invalid." << endl;
-        else
-            cout << "Width: " << width << endl;
-
-        if (depth <= 0.0)
-            cout << "Warning: Depth is not set or invalid." << endl;
-        else
-            cout << "Depth: " << depth << endl;
-
-        if (color == "Unknown")
-            cout << "Warning: Color is not set." << endl;
-        else
-            cout << "Color: " << color << endl;
-
-        if (material == "Unknown")
-            cout << "Warning: Material is not set." << endl;
-        else
-            cout << "Material: " << material << endl;
-
-        if (price <= 0)
-            cout << "Warning: Price is not set or invalid." << endl;
-        else
-            cout << "Price: " << price << endl;
-    }
+    void print(Furniture &furniture) const
 };
 
 #endif
