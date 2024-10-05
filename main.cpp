@@ -27,7 +27,7 @@ int main()
     cout << "4 - Delete Furniture" << endl;
     cout << "5 - Delete Workers" << endl;
     cout << "6 - Delete Cars" << endl;
-    cout << "7 - Save in file" << endl;
+    cout << "7 - Save to file" << endl;
     cout << "8 - Load from file" << endl;
     cout << "9 - Print Factory" << endl;
     cout << "0 - Quit" << endl;
@@ -97,11 +97,11 @@ int main()
             break;
 
         case '7':
-
+            keeper.saveToFile();
             break;
 
         case '8':
-
+            keeper.loadFromFile();
             break;
 
         case '9':

@@ -21,34 +21,11 @@ public:
         }
     }
 
-    void add(Factory *item)
-    {
-        items.push_back(item);
-    }
-
-    void remove(string &type)
-    {
-        for (auto it = items.begin(); it != items.end();)
-        {
-            if ((type == "Worker" && dynamic_cast<Worker *>(*it)) ||
-                (type == "Car" && dynamic_cast<Car *>(*it)) ||
-                (type == "Furniture" && dynamic_cast<Furniture *>(*it)))
-            {
-                delete *it;
-                it = items.erase(it);
-            }
-            else
-            {
-                ++it;
-            }
-        }
-    }
-
-    void print_all()
-    {
-        for (int i = 0; i < items.size(), i++)
-            items[i]->print;
-    }
+    void add(Factory *item);
+    void remove(string &type);
+    void print_all() const;
+    void saveToFile() const;
+    void loadFromFile() const;
 };
 
 #endif
