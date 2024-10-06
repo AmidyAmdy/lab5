@@ -1,113 +1,100 @@
 #include "car.h"
 #include "furniture.h"
 #include "worker.h"
+#include <fstream>
 #include <iostream>
 using namespace std;
 
-void Car::print(Car &car) const
+void Car::print() const
 {
-    cout << "/nMark:" << car.getMark() << endl;
-    cout << "Model:" << car.getModel() << endl;
-    cout << "Num:" << car.getNum() << endl;
+    cout << "\nCAR:" << endl;
+    cout << "\nMark:" << mark << endl;
+    cout << "Model:" << model << endl;
+    cout << "Num:" << num << endl;
 }
 
-void Worker::print(Worker &worker) const
+void Worker::print() const
 {
-    cout << "/nName:" << worker.getName() << endl;
-    cout << "Position:" << worker.getPosition() << endl;
-    cout << "Salary:" << worker.getSalary() << endl;
-    cout << "Address:" << worker.getAddress() << endl;
-    cout << "Phone number:" << worker.getPhonenumber() << endl;
+    cout << "\nWORKER:" << endl;
+    cout << "\nName:" << name << endl;
+    cout << "Position:" << position << endl;
+    cout << "Salary:" << salary << endl;
+    cout << "Address:" << address << endl;
+    cout << "Phone number:" << phone_number << endl;
 }
 
-void Furniture::print(Furniture &furniture) const
+void Furniture::print() const
 {
-    cout << "/nType:" << furniture.getType() << endl;
-    cout << "Height:" << furniture.getHeight() << endl;
-    cout << "Width:" << furniture.getWidth() << endl;
-    cout << "Depth:" << furniture.getDepth() << endl;
-    cout << "Color:" << furniture.getColor() << endl;
-    cout << "Material:" << furniture.getMaterial() << endl;
-    cout << "Price:" << furniture.getPrice() << endl;
+    cout << "\nFURNITURE:" << endl;
+    cout << "\nType:" << type << endl;
+    cout << "Height:" << height << endl;
+    cout << "Width:" << width << endl;
+    cout << "Depth:" << depth << endl;
+    cout << "Color:" << color << endl;
+    cout << "Material:" << material << endl;
+    cout << "Price:" << price << endl;
 }
 
-void Furniture::save(Furniture &furniture) const
+void Furniture::save(ofstream &out) const
 {
     out << "FURNITURE" << endl;
-    out << furniture.getType() << endl;
-    out << furniture.getHeight() << endl;
-    out << furniture.getWidth() << endl;
-    out << furniture.getDepth() << endl;
-    out << furniture.getColor() << endl;
-    out << furniture.getMaterial() << endl;
-    out << furniture.getPrice() << endl;
+    out << type << endl;
+    out << height << endl;
+    out << width << endl;
+    out << depth << endl;
+    out << color << endl;
+    out << material << endl;
+    out << price << endl;
 }
 
-void Worker::save(Worker &worker) const
+void Worker::save(ofstream &out) const
 {
     out << "WORKER" << endl;
-    out << worker.getName() << endl;
-    out << worker.getPosition() << endl;
-    out << worker.getSalary() << endl;
-    out << worker.getAddress() << endl;
-    out << worker.getPhonenumber() << endl;
+    out << name << endl;
+    out << position << endl;
+    out << salary << endl;
+    out << address << endl;
+    out << phone_number << endl;
 }
 
-void Car::save(Car &car) const
+void Car::save(ofstream &out) const
 {
     out << "CAR" << endl;
-    out << car.getMark() << endl;
-    out << car.getModel() << endl;
-    out << car.getNum() << endl;
+    out << mark << endl;
+    out << model << endl;
+    out << num << endl;
 }
 
-void Furniture::load(Furniture &furniture, ifstream input)
+void Furniture::load(ifstream &input)
 {
-    string str;
-    int int1;
-    double dbl;
-
-    getline(input, str);
-    furniture.setType(str);
-    getline(input, dbl);
-    furniture.setHeight(dbl);
-    getline(input, dbl);
-    furniture.setWidth(dbl);
-    getline(input, dbl);
-    furniture.setDepth(dbl);
-    getline(input, str);
-    furniture.setColor(str);
-    getline(input, str);
-    furniture.setMaterial(str);
-    getline(input, int1);
-    furniture.setPrice(int1);
+    string line;
+    getline(input, type);
+    getline(input, line);
+    height = stod(line);
+    getline(input, line);
+    width = stod(line);
+    getline(input, line);
+    depth = stod(line);
+    getline(input, color);
+    getline(input, material);
+    getline(input, line);
+    price = stoi(line);
 }
 
-void Worker::load(Worker &worker, ifstream input)
+void Worker::load(ifstream &input)
 {
-    string str;
-    int int1;
-
-    getline(input, str);
-    worker.setName(str);
-    getline(input, str);
-    worker.setPosition(str);
-    getline(input, int1);
-    worker.setSalary(int1);
-    getline(input, str);
-    worker.setAddress(str);
-    getline(input, str);
-    worker.setPhonenumber(str);
+    string line;
+    getline(input, name);
+    getline(input, position);
+    getline(input, line);
+    salary = stoi(line);
+    getline(input, address);
+    getline(input, phone_number);
 }
 
-void Car::load(Car &car, ifstream input)
+void Car::load(ifstream &input)
 {
-    string str;
-
-    getline(input, str);
-    car.setMark(str);
-    getline(input, str);
-    car.setModel(str);
-    getline(input, str);
-    car.setNum(str);
+    getline(input, mark);
+    getline(input, model);
+    getline(input, num);
 }

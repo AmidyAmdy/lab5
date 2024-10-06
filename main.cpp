@@ -4,6 +4,7 @@
 #include "keeper.h"
 #include "worker.h"
 #include "furniture.h"
+#include "exceptions.h"
 #include "car.h"
 using namespace std;
 
@@ -37,7 +38,7 @@ int main()
         switch (_getch())
         {
         case '1':
-            cout << "Adding a furniture:" << endl;
+            cout << "\nAdding a furniture:" << endl;
             cout << "Type: ";
             cin >> str1;
             cout << "\nHeight: ";
@@ -50,14 +51,14 @@ int main()
             cin >> str2;
             cout << "\nMaterial: ";
             cin >> str3;
-            cout << "\nPrice:";
+            cout << "\nPrice: ";
             cin >> num1;
 
-            keeper.add(new Car(str1, double1, double2, double3, str2, str3, num1));
+            keeper.add(new Furniture(str1, double1, double2, double3, str2, str3, num1));
             break;
 
         case '2':
-            cout << "Adding a worker" << endl;
+            cout << "\nAdding a worker" << endl;
             cout << "Name: ";
             cin >> str1;
             cout << "\nPosition: ";
@@ -69,11 +70,11 @@ int main()
             cout << "\nPhone number: ";
             cin >> str4;
 
-            keeper.add(new Car(str1, str2, num1, str3, str4));
+            keeper.add(new Worker(str1, str2, num1, str3, str4));
             break;
 
         case '3':
-            cout << "Adding a car" << endl;
+            cout << "\nAdding a car" << endl;
             cout << "Mark: ";
             cin >> str1;
             cout << "\nModel: ";
@@ -101,7 +102,21 @@ int main()
             break;
 
         case '8':
-            keeper.loadFromFile();
+            try
+            {
+                if (!keeper)
+                {
+                    cout << "Loaded successfully!" << endl;
+                }
+            }
+            catch (const FileOpenException &e)
+            {
+                cerr << e.what() << endl;
+            }
+            catch (const exception &e)
+            {
+                cerr << "Unknown error: " << e.what() << endl;
+            }
             break;
 
         case '9':
@@ -109,13 +124,17 @@ int main()
             break;
 
         case '0':
-            cout << "Exiting program.";
+            cout << "\nExiting program.";
             return 0;
             break;
 
         default:
-            cout << "You pressed a wrong button. Try again" << endl;
+            cout << "\nYou pressed a wrong button. Try again" << endl;
             break;
         }
     }
 }
+
+/*
+"C:\MinGW\bin\g++.exe" -fdiagnostics-color=always -g "C:\Users\Dmitry\Desktop\Programming\CPP\lab5\main.cpp" "C:\Users\Dmitry\Desktop\Programming\CPP\lab5\keeper_methods.cpp" "C:\Users\Dmitry\Desktop\Programming\CPP\lab5\methods.cpp" -o "C:\Users\Dmitry\Desktop\Programming\CPP\lab5\main.exe"
+*/

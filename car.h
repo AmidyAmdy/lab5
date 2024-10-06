@@ -13,9 +13,9 @@ private:
     string num;
 
 public:
-    explicit Car(const string &mark = "Unknown", const string &model = "Unknown", const string &num = "Unknown") : mark(mark), model(model), num(num) {}
+    explicit Car(const string &mark, const string &model, const string &num) : mark(mark), model(model), num(num) {}
     Car(const Car &other) : mark(other.mark), model(other.model), num(other.num) {}
-    explicit Car() : mark("Unknown"), model("Unknown"), num("Unknown") {}
+    Car() : mark("Unknown"), model("Unknown"), num("Unknown") {}
     ~Car() {}
 
     string getMark() const { return mark; }
@@ -25,10 +25,10 @@ public:
     string getNum() const { return num; }
     void setNum(string newNum) { num = newNum; }
 
-    virtual void save() const = 0;
-    virtual void load() = 0;
+    void save(ofstream &out) const override;
+    void load(ifstream &input) override;
 
-    void print(Car &car) const;
+    void print() const override;
 };
 
 #endif

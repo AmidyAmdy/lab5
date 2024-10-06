@@ -22,10 +22,15 @@ public:
     }
 
     void add(Factory *item);
-    void remove(string &type);
+    void remove(const string &type);
     void print_all() const;
     void saveToFile() const;
-    void loadFromFile() const;
+    void loadFromFile();
+    bool operator!()
+    {
+        loadFromFile();
+        return true;
+    }
 };
 
 #endif
